@@ -1,0 +1,35 @@
+{
+    "code": 200,
+    "msg": "成功!",
+    "data": {
+        "yesterday": {
+            "date": "5日星期二",
+            "high": "高温 21℃",
+            "fx": "北风",
+            "low": "低温 14℃",
+            "fl": "\u003c![CDATA[\u003c3级]]\u003e",
+            "type": "晴"
+        },
+        "city": "上海",
+        "aqi": null,
+        "forecast": [{
+                "module_name": "安装二维码",
+                "url": "www.baidu.com",
+                "icon": "https://hbimg.huabanimg.com/22eab7b49db003048ffbcceef3c7f55b4f25689c5c817-IbTSIT_fw658/format/webp"
+            },
+            {
+                "module_name": "移动派单",
+                "url": "www.baidu.com",
+                "icon": "https://hbimg.huabanimg.com/22eab7b49db003048ffbcceef3c7f55b4f25689c5c817-IbTSIT_fw658/format/webp"
+            },
+            {
+                "module_name": "二代试压仪",
+                "url": "www.baidu.com",
+                "icon": "https://hbimg.huabanimg.com/22eab7b49db003048ffbcceef3c7f55b4f25689c5c817-IbTSIT_fw658/format/webp"
+            }
+
+        ],
+        "ganmao": "天气较凉，较易发生感冒，请适当增加衣服。体质较弱的朋友尤其应该注意防护。",
+        "wendu": "19"
+    }
+}
