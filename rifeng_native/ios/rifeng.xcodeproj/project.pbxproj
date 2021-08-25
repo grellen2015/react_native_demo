@@ -14,8 +14,9 @@
 		6AF8805109D0E40A26282042 /* libPods-rifeng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C297644D3484D26526A9769A /* libPods-rifeng.a */; };
 		75D4E76E5F538302BB1F3560 /* libPods-rifeng-rifengTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B906D9F7E51BEB2E5CA1588 /* libPods-rifeng-rifengTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		BAB66FB4060B46B09D709CBA /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 812045978FE548C382479F0C /* antfill.ttf */; };
 		A1B98A3087114BC4A0CAE339 /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7952D19DFB214A4595442CBF /* antoutline.ttf */; };
+		A1BDF6A126D0E87B0078CC55 /* BridgingSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDF6A026D0E87B0078CC55 /* BridgingSwift.swift */; };
+		BAB66FB4060B46B09D709CBA /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 812045978FE548C382479F0C /* antfill.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +42,15 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = rifeng/main.m; sourceTree = "<group>"; };
 		1B906D9F7E51BEB2E5CA1588 /* libPods-rifeng-rifengTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rifeng-rifengTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31606B7E2DAEE4EBC0B74710 /* Pods-rifeng-rifengTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rifeng-rifengTests.debug.xcconfig"; path = "Target Support Files/Pods-rifeng-rifengTests/Pods-rifeng-rifengTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7952D19DFB214A4595442CBF /* antoutline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antoutline.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; };
+		812045978FE548C382479F0C /* antfill.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antfill.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = rifeng/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1BDF69F26D0E87B0078CC55 /* rifeng-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rifeng-Bridging-Header.h"; sourceTree = "<group>"; };
+		A1BDF6A026D0E87B0078CC55 /* BridgingSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgingSwift.swift; sourceTree = "<group>"; };
 		C297644D3484D26526A9769A /* libPods-rifeng.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rifeng.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D58316846E640BAC5D17F56B /* Pods-rifeng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rifeng.debug.xcconfig"; path = "Target Support Files/Pods-rifeng/Pods-rifeng.debug.xcconfig"; sourceTree = "<group>"; };
 		DAE958A31E0719C0825E3481 /* Pods-rifeng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rifeng.release.xcconfig"; path = "Target Support Files/Pods-rifeng/Pods-rifeng.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		812045978FE548C382479F0C /* antfill.ttf */ = {isa = PBXFileReference; name = "antfill.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7952D19DFB214A4595442CBF /* antoutline.ttf */ = {isa = PBXFileReference; name = "antoutline.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A1BDF6A026D0E87B0078CC55 /* BridgingSwift.swift */,
 				13B07FAE1A68108700A75B9A /* rifeng */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* rifengTests */,
@@ -138,6 +142,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				39A3ACD77B33F5BB8B6A356F /* Pods */,
 				CA8227CE585A489D9DECECAA /* Resources */,
+				A1BDF69F26D0E87B0078CC55 /* rifeng-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -154,14 +159,13 @@
 			sourceTree = "<group>";
 		};
 		CA8227CE585A489D9DECECAA /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				812045978FE548C382479F0C /* antfill.ttf */,
 				7952D19DFB214A4595442CBF /* antoutline.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -222,7 +226,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -428,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				A1BDF6A126D0E87B0078CC55 /* BridgingSwift.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31606B7E2DAEE4EBC0B74710 /* Pods-rifeng-rifengTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -474,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 002CF886643E64A64F71B0DB /* Pods-rifeng-rifengTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = rifengTests/Info.plist;
@@ -515,6 +522,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = rifeng;
+				SWIFT_OBJC_BRIDGING_HEADER = "rifeng-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -541,6 +549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = rifeng;
+				SWIFT_OBJC_BRIDGING_HEADER = "rifeng-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

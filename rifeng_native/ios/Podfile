@@ -12,7 +12,7 @@ target 'rifeng' do
     :hermes_enabled => false
   )
 
- # pod 'RNDynamicBundle', :path => '../node_modules/react-native-dynamic-bundle'
+#  pod 'RNDynamicBundle', :path => '../node_modules/react-native-dynamic-bundle'
 
   target 'rifengTests' do
     inherit! :complete

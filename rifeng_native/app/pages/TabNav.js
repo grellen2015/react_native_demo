@@ -5,6 +5,7 @@ import ContactScreen from './Contacts';
 import HomeScreen from './HomePage';
 import MessageScreen from './Message';
 import MineScreen from './Mine';
+import AppList from './AppList'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Image} from 'react-native';
 import px2dp from '../util/DisplayUtil';
@@ -18,12 +19,12 @@ export default function Navigation({colorScheme}) {
             let icon;
             icon = focused ? (
               <Image
-                source={require('../images/home_select.png')}
+                source={require('../resource/images/home_select.png')}
                 style={{width: px2dp(30), height: px2dp(30)}}
               />
             ) : (
               <Image
-                source={require('../images/home_unselect.png')}
+                source={require('../resource/images/home_unselect.png')}
                 style={{width: px2dp(30), height: px2dp(30)}}
               />
             );
@@ -44,12 +45,12 @@ export default function Navigation({colorScheme}) {
       />
       <Tab.Screen
         name="contact"
-        component={ContactNavigator}
+        component={ContactScreen}
         options={{title: 'Contact'}}
       />
       <Tab.Screen
         name="message"
-        component={MessageNavigator}
+        component={AppListNavigator}
         options={{title: '消息'}}
       />
 
@@ -64,6 +65,39 @@ export default function Navigation({colorScheme}) {
 const Tab = createBottomTabNavigator();
 const TabStack = createStackNavigator();
 
+
+function HomeNavigator() {
+  return (
+    <TabStack.Navigator>
+      <TabStack.Screen
+        name="home"
+        component={HomeScreen}
+        options={{
+          headerTitle: '首页',
+          headerLeft: null,
+          headerTitleAlign: 'center',
+        }}
+      />
+    </TabStack.Navigator>
+  );
+}
+
+function AppListNavigator() {
+  return (
+    <TabStack.Navigator>
+      <TabStack.Screen
+        name="appList"
+        component={AppList}
+        options={{
+          headerTitle: '应用列表',
+          headerLeft: null,
+          headerTitleAlign: 'center',
+        }}
+      />
+    </TabStack.Navigator>
+  );
+}
+
 function ContactNavigator() {
   return (
     <TabStack.Navigator>
@@ -71,7 +105,7 @@ function ContactNavigator() {
         name="contact"
         component={ContactScreen}
         options={{
-          headerTitle: '校园',
+          headerTitle: 'contact',
           headerLeft: null,
           headerTitleAlign: 'center',
         }}
