@@ -26,10 +26,11 @@ useEffect(() => {
     }, []);
 
 
-   function didClickItem(index){
+   function didClickItem(item){
 
-    console.log("didclick item" + index);
+    console.log("didclick item" + item);
 
+    props.navigation.navigate('showH5Page');
 
 
    }
@@ -37,7 +38,7 @@ useEffect(() => {
    var boxs =installList.map(function(elem, index) {
     var baseImg='data:image/png;base64,' + elem.appLogo;
     return (
-      <TouchableHighlight key={elem.key} style={[styles.touchBox, index % 3 === 2 ? styles.touchBox2 : styles.touchBox1]} underlayColor="#eee" onPress={()=> didClickItem(index)}>
+      <TouchableHighlight key={elem.key} style={[styles.touchBox, index % 3 === 2 ? styles.touchBox2 : styles.touchBox1]} underlayColor="#eee" onPress={()=> didClickItem(elem)}>
         <View style={styles.boxContainer}>
           <Text style={styles.boxText}>{elem.appName}</Text>
           <Image

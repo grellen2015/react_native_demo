@@ -10,6 +10,7 @@ import {Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 export default {
+  downUrl: 'http://192.168.8.142',
   serverUrl: 'http://192.168.8.142:6060',
   pageSize: 10,
   deviceType: Platform.OS.toUpperCase(),

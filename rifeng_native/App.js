@@ -12,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 const Stack = createStackNavigator();
 import { AppState } from "react-native";
 import configureStore from "./app/redux/store/store";
+import ShowH5Screen from './app/pages/showH5Page'
 // 引入 redux 及 redux-persist 配置后的变量供使用
 const { store, persist } = configureStore();
 
@@ -53,6 +54,14 @@ function App() {
             component={DetailScreen}
             options={({route, navigation}) => ({
                 title: route.params.screenName,
+            })}
+        />
+
+        <Stack.Screen
+            name="showH5Page"
+            component={ShowH5Screen}
+            options={({route, navigation}) => ({
+                title: "h5Page",
             })}
         />
     </Stack.Navigator>

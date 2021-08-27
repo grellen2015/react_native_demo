@@ -144,9 +144,6 @@ async function post(
   config = {
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type',
-      'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
     },
   },
 ) {
