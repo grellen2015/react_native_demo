@@ -65,7 +65,7 @@ export default function Navigation({ colorScheme }) {
       <Tab.Screen
         name="message"
         component={AppListNavigator}
-        options={{ title: '消息' }}
+        options={{ title: '应用' }}
       />
 
       <Tab.Screen
@@ -134,7 +134,7 @@ function MessageNavigator() {
         name="message"
         component={MessageScreen}
         options={{
-          headerTitle: '消息',
+          headerTitle: '应用',
           headerLeft: null,
           headerTitleAlign: 'center',
         }}

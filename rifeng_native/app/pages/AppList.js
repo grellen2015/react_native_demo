@@ -61,7 +61,19 @@ export default function AppList(props) {
       appListAction.getAppList(params).then(resp => {
         console.log(resp);
         setAppList(resp.Result);
-        console.log(appList);
+        resp.Result.forEach((item, index, self) => {
+          
+          resp.Result[index].install = false;
+          installList.forEach((installItem, retindex, retself) => {
+            if(installItem.appId === item.appId){
+              resp.Result[index].install = true;
+             
+            }
+          });
+        });
+
+        setAppList(resp.Result);
+       
         setRefreshing(false);
 
 
@@ -146,60 +158,73 @@ export default function AppList(props) {
 
   function clickEvent(item) {
 
-    //点击安装，先判断是否存在，存在就打开，不存在就下载
-    let pathName = RNFS.DocumentDirectoryPath + '/' + item.appId + '/' + item.appHisId;
-    let filePathName = RNFS.DocumentDirectoryPath + '/' + item.appId;
-    RNFS.exists(pathName).then(exists => {
+    if (item.install == true){
+      navigation.navigate("showH5Page");
+    }else{
+//点击安装，先判断是否存在，存在就打开，不存在就下载
+let pathName = RNFS.DocumentDirectoryPath + '/' + item.appId + '/' + item.appHisId;
+let filePathName = RNFS.DocumentDirectoryPath + '/' + item.appId;
+RNFS.exists(pathName).then(exists => {
+  if (exists) {
+    
+  } else {
+    //删除文件
+    RNFS.exists(filePathName).then(exists => {
       if (exists) {
-        // navigation.navigate(routeName);
-      } else {
-        //删除文件
-        RNFS.exists(filePathName).then(exists => {
-          if (exists) {
-            //RNFS.unlink(filePathName);
-          }
-
-          const options = {
-            NSURLIsExcludedFromBackupKey: true, // iOS only
-          };
-          console.log('mkdir:' + filePathName);
-          RNFS.mkdir(filePathName, options);
-        });
-        const options = {
-          NSURLIsExcludedFromBackupKey: true, // iOS only
-        };
-        console.log('mkdir:' + filePathName);
-        RNFS.mkdir(filePathName, options);
-
-        //下载文件
-        downloadH5File(Constants.downUrl + "/RF_Attachment/" + item.appFilePath.replace('\\', '/'), filePathName, item.appHisId + ".zip");
-        addItemToInstall(item);
-
+        //RNFS.unlink(filePathName);
       }
+
+      const options = {
+        NSURLIsExcludedFromBackupKey: true, // iOS only
+      };
+      console.log('mkdir:' + filePathName);
+      RNFS.mkdir(filePathName, options);
     });
+    const options = {
+      NSURLIsExcludedFromBackupKey: true, // iOS only
+    };
+    console.log('mkdir:' + filePathName);
+    RNFS.mkdir(filePathName, options);
 
-
+    //下载文件
+    downloadH5File(Constants.downUrl + "/RF_Attachment/" + item.appFilePath.replace('\\', '/'), filePathName, item.appHisId + ".zip");
+    addItemToInstall(item);
 
   }
+});
 
 
 
-  function addItemToInstall(item) {
-    installList.push(item);
-    let ret = [];
-    installList.forEach((item, index, self) => {
-      let compare = [];
-      ret.forEach((retitem, retindex, retself) => {
-        compare.push(retitem.appId);
-      });
-      if (compare.indexOf(item.appId) === -1) {
-        ret.push(item);
-      }
-    });
-    dispatch({
-      type: USER_INSTALL_APP_LIST,
-      installList: ret,
-    });
+}
+
+
+
+function addItemToInstall(item) {
+installList.push(item);
+let ret = [];
+installList.forEach((item, index, self) => {
+  let compare = [];
+  ret.forEach((retitem, retindex, retself) => {
+    compare.push(retitem.appId);
+  });
+  if (compare.indexOf(item.appId) === -1) {
+    ret.push(item);
+  }
+});
+
+appList.forEach((appItem, index, self) => {
+   if (item.appId === appItem.appId){
+    appList[index].install = true;
+   }
+});
+
+dispatch({
+  type: USER_INSTALL_APP_LIST,
+  installList: ret,
+});
+    }
+
+    
   }
 
   //上拉加载更多数据

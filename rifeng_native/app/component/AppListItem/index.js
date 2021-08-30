@@ -8,6 +8,7 @@ export default class AppListItem extends React.Component {
   }
   AppListItem(props) {
     this.props = props;
+    
   }
 
   onPress = () => {
@@ -16,7 +17,7 @@ export default class AppListItem extends React.Component {
   };
 
   render() {
-
+   
     var baseImg='data:image/png;base64,' + this.props.item.appLogo;
     return (
       <View style={{paddingTop: 10}}>
@@ -37,7 +38,7 @@ export default class AppListItem extends React.Component {
                 <Text style={styles.nameText}>{this.props.item.appName}</Text>
                 <TouchableHighlight onPress={this.onPress} style = {styles.button}>
                 <View >
-                  <Text>安装</Text>
+                  <Text>{this.props.item.install === true ? "启动" : "安装"} </Text>
                 </View>
               </TouchableHighlight>
               </View>
