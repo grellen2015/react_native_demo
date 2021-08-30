@@ -2,13 +2,20 @@ package com.rifeng;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
+
+import androidx.annotation.Nullable;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import org.mauritsd.reactnativedynamicbundle.RNDynamicBundlePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.JSIModulePackage;
 import com.facebook.soloader.SoLoader;
+
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -34,6 +41,21 @@ public class MainApplication extends Application implements ReactApplication {
         protected String getJSMainModuleName() {
           return "index";
         }
+
+
+          @Nullable
+          @Override
+          protected String getJSBundleFile() {
+//              String jsBundleFile = getFilesDir().getAbsolutePath() + "/index.android.bundle";
+              String jsBundleFile = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "bundles/index.android.bundle";
+              File file = new File(jsBundleFile);
+
+              if( file != null && file.exists()){
+                  return jsBundleFile;
+              }else{
+                  return  super.getJSBundleFile();
+              }
+          }
       };
 
   @Override

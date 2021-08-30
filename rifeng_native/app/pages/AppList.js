@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React,{ Component, useState, useEffect, useRef } from 'react';
-import {Button,TextInput, Image,ImageBackground,StyleSheet, StatusBar,Alert, TouchableOpacity,View} from 'react-native';
-  import px2dp from '../util/DisplayUtil';
+import React, { Component, useState, useEffect, useRef } from 'react';
+import { FlatList, RefreshControl, SafeAreaView, ActivityIndicator, StyleSheet, Text, Alert, TouchableOpacity, View } from 'react-native';
+import px2dp from '../util/DisplayUtil';
 import { useSelector, useDispatch } from 'react-redux';
 import appListAction from '../action/main';
 import { ListView } from '@ant-design/react-native';
-import AppListItem  from '../component/AppListItem';
+import AppListItem from '../component/AppListItem';
 import Constants from '../constant/constants';
 import { EasyLoading, Loading } from '../component/EsayLoading';
 import {
@@ -16,88 +16,77 @@ import {
 import RNFS from 'react-native-fs';
 import { zip, unzip, unzipAssets, subscribe } from 'react-native-zip-archive';
 
-export default function AppList(props){
+export default function AppList(props) {
 
-     const dispatch = useDispatch();
-     const [appList, setAppList] = useState([]);
+  const dispatch = useDispatch();
+  const [appList, setAppList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
+  const [refreshing, setRefreshing] = useState(true);
 
 
-     const {userToken, userInfo, installList} = useSelector(state => ({
-        userToken : state.UserReducer.userToken,
-        userInfo:  state.UserReducer.userInfo,
-        installList : state.UserReducer.installList,
-        }));
-    useEffect(() => {
-        // Global navigation for not in router pages
-        global.navigation = props.navigation;
-        }, []);
+  const { userToken, userInfo, installList } = useSelector(state => ({
+    userToken: state.UserReducer.userToken,
+    userInfo: state.UserReducer.userInfo,
+    installList: state.UserReducer.installList,
+  }));
+  useEffect(() => {
+    // Global navigation for not in router pages
+    global.navigation = props.navigation;
+    onStartRefresh();
+  }, []);
 
-   let sleep = (time: any) =>
-    new Promise(resolve => setTimeout(() => resolve(), time));
 
-  let onFetch = async (
-    page = 1,
-    startFetch,
-    abortFetch
-  ) => {
-    console.log('=======>>>>');
+  function onStartRefresh() {
     try {
-      let pageLimit = 30;
-
-
-      const skip = (page - 1) * pageLimit;
-
-
+      setRefreshing(true);
       const contextParam = {
         InvOrgId: '8010',
         Ticket: userToken === null ? '' : userToken,
-    };
-    const parameters = [{
+      };
+      const parameters = [{
         'Value': '3.0',
-    }, {
+      }, {
         'Value': '1.0',
-    }];
+      }];
 
-    const params = {
+      const params = {
         ApiType: 'AppsMenuController',
         Context: contextParam,
-        Method:'GetAppsByCategoryId',
+        Method: 'GetAppsByCategoryId',
         Parameters: parameters,
 
-    };
-    console.log(params);
-    let rowData = [];
-    appListAction.getAppList(params).then(resp => {
+      };
+      console.log(params);
+      appListAction.getAppList(params).then(resp => {
         console.log(resp);
-        setAppList(resp.Result );
+        setAppList(resp.Result);
         console.log(appList);
-        if (page === 2) {
-            setAppList([] );
-          }
-
-          startFetch(appList, pageLimit);
-
-    });
+        setRefreshing(false);
 
 
+      });
     } catch (err) {
-      abortFetch(); //manually stop the refresh or pagination if it encounters network error
+      //abortFetch(); //manually stop the refresh or pagination if it encounters network error
+      setRefreshing(false);
     }
-  };
+  }
 
-  let renderItem = (item) => {
-    return (
-        <AppListItem item = {item} itemClick={()=>{clickEvent(item);}} />
-    );
-  };
+  let renderItem = ({ item }) => (
+    <AppListItem item={item} itemClick={() => { clickEvent(item); }} />
+  );
 
-  function downloadH5File(srcPath, destPath,fileName) {
+
+
+
+
+  function downloadH5File(srcPath, destPath, fileName) {
 
     EasyLoading.show();
     console.log("srcPath:" + srcPath);
     console.log("destPath:" + destPath);
     const options = {
-      fromUrl:  srcPath,
+      fromUrl: srcPath,
       toFile: destPath + "/" + fileName,
       background: true,
       begin: res => {
@@ -122,7 +111,7 @@ export default function AppList(props){
 
           unzipH5File(destPath, fileName);
           console.log('file://' + destPath);
-         // EasyLoading.dismiss();//关闭
+          // EasyLoading.dismiss();//关闭
         })
         .catch(err => {
           console.log('err:', err);
@@ -135,27 +124,27 @@ export default function AppList(props){
     }
   }
 
-  function unzipH5File(path, zipFile){
-    const sourcePath = path + "/"  + zipFile;
+  function unzipH5File(path, zipFile) {
+    const sourcePath = path + "/" + zipFile;
     const targetPath = path;
     const charset = 'UTF-8';
     // charset possible values: UTF-8, GBK, US-ASCII and so on. If none was passed, default value is UTF-8
 
 
     unzip(sourcePath, targetPath, charset)
-    .then((path) => {
+      .then((path) => {
         console.log(`unzip completed at ${path}`);
-        RNFS.unlink(sourcePath );
+        RNFS.unlink(sourcePath);
         EasyLoading.dismiss();//关闭
-    })
-    .catch((error) => {
-         console.error(error);
-         EasyLoading.dismiss();//关闭
-    });
+      })
+      .catch((error) => {
+        console.error(error);
+        EasyLoading.dismiss();//关闭
+      });
   }
 
 
-  function clickEvent(item){
+  function clickEvent(item) {
 
     //点击安装，先判断是否存在，存在就打开，不存在就下载
     let pathName = RNFS.DocumentDirectoryPath + '/' + item.appId + '/' + item.appHisId;
@@ -172,66 +161,139 @@ export default function AppList(props){
 
           const options = {
             NSURLIsExcludedFromBackupKey: true, // iOS only
-            };
-            console.log('mkdir:' + filePathName);
-          RNFS.mkdir(filePathName,options);
+          };
+          console.log('mkdir:' + filePathName);
+          RNFS.mkdir(filePathName, options);
         });
         const options = {
           NSURLIsExcludedFromBackupKey: true, // iOS only
-          };
-          console.log('mkdir:' + filePathName);
-        RNFS.mkdir(filePathName,options);
-        
+        };
+        console.log('mkdir:' + filePathName);
+        RNFS.mkdir(filePathName, options);
+
         //下载文件
-        downloadH5File(Constants.downUrl +"/RF_Attachment/" + item.appFilePath.replace('\\', '/'), filePathName , item.appHisId + ".zip");
+        downloadH5File(Constants.downUrl + "/RF_Attachment/" + item.appFilePath.replace('\\', '/'), filePathName, item.appHisId + ".zip");
         addItemToInstall(item);
 
       }
     });
 
 
-  
+
   }
 
-  function addItemToInstall(item){
+
+
+  function addItemToInstall(item) {
     installList.push(item);
     let ret = [];
     installList.forEach((item, index, self) => {
-        let compare = [];
-        ret.forEach((retitem, retindex, retself) => {
+      let compare = [];
+      ret.forEach((retitem, retindex, retself) => {
         compare.push(retitem.appId);
-        });
-        if (compare.indexOf(item.appId) === -1) {
+      });
+      if (compare.indexOf(item.appId) === -1) {
         ret.push(item);
-        }
+      }
     });
     dispatch({
       type: USER_INSTALL_APP_LIST,
       installList: ret,
-      });
+    });
   }
 
-    return (
-      <View style = {styles.container}>
-    <ListView
-        onFetch={onFetch}
-        keyExtractor={(item, index) =>
-          `${index}`
-        }
-        renderItem={renderItem}
-        numColumns={1}
-      />
-      <Loading/>
+  //上拉加载更多数据
+  function loadMoreData() {
+    //模拟网络请求
+    setTimeout(() => {
+
+      try {
+        setRefreshing(true);
+        const contextParam = {
+          InvOrgId: '8010',
+          Ticket: userToken === null ? '' : userToken,
+        };
+        const parameters = [{
+          'Value': '3.0',
+        }, {
+          'Value': '1.0',
+        }];
+
+        const params = {
+          ApiType: 'AppsMenuController',
+          Context: contextParam,
+          Method: 'GetAppsByCategoryId',
+          Parameters: parameters,
+
+        };
+        console.log(params);
+        appListAction.getAppList(params).then(resp => {
+          console.log(resp);
+          let rowData = appList.concat(resp.Result);
+          setAppList(rowData);
+          console.log(appList);
+          setRefreshing(false);
+
+
+        });
+      } catch (err) {
+        //abortFetch(); //manually stop the refresh or pagination if it encounters network error
+        setRefreshing(false);
+      }
+
+    }, 2000);
+  }
+
+    function //上拉加载布局
+      renderLoadMoreView() {
+      return <View style={styles.loadMore}>
+        <ActivityIndicator
+          style={styles.indicator}
+          size={"large"}
+          color={"red"}
+          animating={true}
+        />
+        <Text>正在加载更多</Text>
       </View>
-        );
-}
+    }
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={appList}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          //下拉刷新
+          refreshing={refreshing}
+          onRefresh={() => {
+            onStartRefresh();
+          }}
+          //设置上拉加载
+          // ListFooterComponent={() => renderLoadMoreView()}
+          // onEndReached={() => loadMoreData()}
+        />
+        <Loading />
+      </SafeAreaView>
 
 
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    );
+  }
 
+
+
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      justifyContent: 'space-around',
+    },
+    loadMore: {
+      alignItems: "center"
+    },
+    indicator: {
+      color: "red",
+      margin: 10
+    }
+  });

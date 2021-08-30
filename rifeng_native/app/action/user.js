@@ -18,6 +18,23 @@ const userLogin = params => {
       return Promise.reject(resp);
     });
 };
+/**
+ * 获取token
+ * @param params {loginId, passWord}
+ * @returns {Promise<any | never>}
+ */
+ const getLongToken = params => {
+
+  console.log(params);
+  return Axios.POST('/Server.svc/api/invoke', params)
+    .then(resp => {
+      return Promise.resolve(resp);
+    })
+    .catch(resp => {
+      Toast.showToast(resp);
+      return Promise.reject(resp);
+    });
+};
 module.exports = {
-  userLogin,
+  userLogin, getLongToken,
 };

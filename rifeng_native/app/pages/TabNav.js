@@ -1,70 +1,83 @@
 import * as React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import ContactScreen from './Contacts';
 import HomeScreen from './HomePage';
 import MessageScreen from './Message';
 import MineScreen from './Mine';
-import AppList from './AppList'
+import AppList from './AppList';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Image} from 'react-native';
+import { Image } from 'react-native';
 import px2dp from '../util/DisplayUtil';
+import { Icon } from 'react-native-elements';
+import AnimatedIcon from '../component/AnimatedIcon';
 
-export default function Navigation({colorScheme}) {
+export default function Navigation({ colorScheme }) {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'index') {
             let icon;
             icon = focused ? (
-              <Image
-                source={require('../resource/images/home_select.png')}
-                style={{width: px2dp(30), height: px2dp(30)}}
-              />
+              <AnimatedIcon iconName={'home'} />
             ) : (
-              <Image
-                source={require('../resource/images/home_unselect.png')}
-                style={{width: px2dp(30), height: px2dp(30)}}
-              />
+              <Icon size={25} name={'home'} color={'#AFB0B2'} />
             );
             return icon;
           } else if (route.name === 'contact') {
-            return <AntDesign name="cloudo" size={size} color={color} />;
+            let icon;
+            icon = focused ? (
+              <AnimatedIcon iconName={'face'} />
+            ) : (
+              <Icon size={25} name={'face'} color={'#AFB0B2'} />
+            );
+            return icon;
           } else if (route.name === 'message') {
-            return <AntDesign name="mail" size={size} color={color} />;
+            let icon;
+            icon = focused ? (
+              <AnimatedIcon iconName={'chat'} />
+            ) : (
+              <Icon size={25} name={'chat'} color={'#AFB0B2'} />
+            );
+            return icon;
           } else if (route.name === 'mine') {
-            return <AntDesign name="setting" size={size} color={color} />;
+            let icon;
+            icon = focused ? (
+              <AnimatedIcon iconName={'settings'} />
+            ) : (
+              <Icon size={25} name={'settings'} color={'#AFB0B2'} />
+            );
+            return icon;
           }
         },
       })}>
       <Tab.Screen
         name="index"
         component={HomeScreen}
-        options={{title: '首页', headerMode: 'none'}}
+        options={{ title: '首页', headerMode: 'none' }}
       />
       <Tab.Screen
         name="contact"
         component={ContactScreen}
-        options={{title: 'Contact'}}
+        options={{ title: 'Contact' }}
       />
       <Tab.Screen
         name="message"
         component={AppListNavigator}
-        options={{title: '消息'}}
+        options={{ title: '消息' }}
       />
 
       <Tab.Screen
         name="mine"
         component={MineNavigator}
-        options={{title: '设置'}}
+        options={{ title: '设置' }}
       />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 }
 const Tab = createBottomTabNavigator();
 const TabStack = createStackNavigator();
-
 
 function HomeNavigator() {
   return (

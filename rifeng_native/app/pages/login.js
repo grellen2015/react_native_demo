@@ -40,6 +40,38 @@ export default function LoginScreen(props){
         global.navigation = props.navigation;
         }, []);
 
+
+        function getLongToken(){
+
+            const contextParam = {
+                InvOrgId: "8010",
+                Ticket: userToken === null ? "" : userToken
+            };
+            const parameters = [{
+                "Value": userToken,
+            }];
+           
+            const params = {
+                ApiType: "AppSecurtiyController",
+                Context: contextParam,
+                Method:"GenerateLongToken",
+                Parameters: parameters
+    
+            };
+            userAction.getLongToken(params).then(resp => {
+    
+                // props.navigation.replace("TabNav");
+                // Toast.showToast(resp.Context.Ticket);
+                // const token = `Bearer ${resp.token}`;
+                dispatch({
+                type: USER_TOKEN,
+                userToken: resp.Result,
+                });
+                props.navigation.replace("TabNav");
+            });
+
+        }
+
     function login() {
         if (!loginId || !password) {
             Toast.showToast(I18n.t("Login.loginTips"));
@@ -79,7 +111,9 @@ export default function LoginScreen(props){
             });
             global.jwtToken = resp.Context.Ticket;
             global.userInfo = resp.result;
-            props.navigation.replace("TabNav");
+            // props.navigation.replace("TabNav");
+
+            getLongToken();
         });
         }
 
