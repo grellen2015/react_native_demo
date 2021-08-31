@@ -5,6 +5,7 @@ import {useEffect, useState, useRef} from 'react';
 import {InteractionManager, View, Text,window} from 'react-native';
 // import Loading from '../common/loading';
 import { useSelector, useDispatch } from "react-redux";
+import Constants from '../constant/constants';
 
 export default function showH5Page(item) {
   const [show, setShow] = useState(false);
@@ -22,7 +23,7 @@ export default function showH5Page(item) {
    }));
   
   //
-  var targetPath = RNFS.DocumentDirectoryPath + '/220/index.html';
+  var targetPath =  Constants.documentPath + '/220/index.html';
   // var targetPath =  "http://www.baidu.com";
   // alert(targetPath)
 

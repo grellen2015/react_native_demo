@@ -13,6 +13,7 @@ const Stack = createStackNavigator();
 import { AppState } from "react-native";
 import configureStore from "./app/redux/store/store";
 import ShowH5Screen from './app/pages/showH5Page'
+import ScanScreen from './app/pages/ScanScreen';
 // 引入 redux 及 redux-persist 配置后的变量供使用
 const { store, persist } = configureStore();
 
@@ -64,6 +65,14 @@ function App() {
                 title: "h5Page",
             })}
         />
+
+      <Stack.Screen
+            name="scanScreen"
+            component={ScanScreen}
+            options={({route, navigation}) => ({
+                title: "scan",
+            })}
+        />  
     </Stack.Navigator>
     </NavigationContainer>
     </PersistGate>

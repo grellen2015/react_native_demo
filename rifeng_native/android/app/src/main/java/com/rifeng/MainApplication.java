@@ -8,6 +8,12 @@ import androidx.annotation.Nullable;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.zoontek.rnpermissions.RNPermissionsPackage;
+import org.reactnative.camera.RNCameraPackage;
+import com.zoontek.rnpermissions.RNPermissionsPackage;
+import org.reactnative.camera.RNCameraPackage;
+//import com.zoontek.rnpermissions.RNPermissionsPackage;
+import org.reactnative.camera.RNCameraPackage;
 import org.mauritsd.reactnativedynamicbundle.RNDynamicBundlePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -20,6 +26,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+
+    public static MainApplication mainApplication;
+
+
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
@@ -34,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+            packages.add(new ReloadReactPackage());
           return packages;
         }
 
@@ -66,6 +77,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+      mainApplication = this;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }

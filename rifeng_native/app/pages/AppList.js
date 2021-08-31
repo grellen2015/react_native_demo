@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { Component, useState, useEffect, useRef } from 'react';
-import { FlatList, RefreshControl, SafeAreaView, ActivityIndicator, StyleSheet, Text, Alert, TouchableOpacity, View } from 'react-native';
+import { FlatList, RefreshControl, SafeAreaView, ActivityIndicator, StyleSheet, Text, Alert, TouchableOpacity, View , Platform} from 'react-native';
 import px2dp from '../util/DisplayUtil';
 import { useSelector, useDispatch } from 'react-redux';
 import appListAction from '../action/main';
@@ -156,14 +156,34 @@ export default function AppList(props) {
   }
 
 
-  function clickEvent(item) {
+  /**
+   * 
+var RNFS = require('react-native-fs');
+//   undefined
+console.log('MainBundlePath',RNFS.MainBundlePath)
+//   /data/data/com.rn_test_demo/cache
+console.log('CachesDirectoryPath',RNFS.CachesDirectoryPath)
+//   /data/data/com.rn_test_demo/files
+console.log('DocumentDirectoryPath',RNFS.DocumentDirectoryPath)
+//   /data/data/com.rn_test_demo/cache
+console.log('TemporaryDirectoryPath',RNFS.TemporaryDirectoryPath)
+//   undefined
+console.log('LibraryDirectoryPath',RNFS.LibraryDirectoryPath)
+//   /storage/emulated/0/Android/data/com.rn_test_demo/files
+console.log('ExternalDirectoryPath',RNFS.ExternalDirectoryPath)
+//  /storage/emulated/0
+console.log('ExternalStorageDirectoryPath',RNFS.ExternalStorageDirectoryPath)
 
+   */
+
+
+  function clickEvent(item) {
     if (item.install == true){
       navigation.navigate("showH5Page");
     }else{
 //点击安装，先判断是否存在，存在就打开，不存在就下载
-let pathName = RNFS.DocumentDirectoryPath + '/' + item.appId + '/' + item.appHisId;
-let filePathName = RNFS.DocumentDirectoryPath + '/' + item.appId;
+let pathName = Constants.documentPath + '/' + item.appId + '/' + item.appHisId;
+let filePathName =  Constants.documentPath + '/' + item.appId;
 RNFS.exists(pathName).then(exists => {
   if (exists) {
     

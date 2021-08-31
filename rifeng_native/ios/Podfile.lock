@@ -259,13 +259,13 @@ PODS:
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
   - React-jsinspector (0.64.2)
-  - react-native-camera (3.44.3):
+  - react-native-camera (4.1.1):
     - React-Core
-    - react-native-camera/RCT (= 3.44.3)
-    - react-native-camera/RN (= 3.44.3)
-  - react-native-camera/RCT (3.44.3):
+    - react-native-camera/RCT (= 4.1.1)
+    - react-native-camera/RN (= 4.1.1)
+  - react-native-camera/RCT (4.1.1):
     - React-Core
-  - react-native-camera/RN (3.44.3):
+  - react-native-camera/RN (4.1.1):
     - React-Core
   - react-native-cameraroll (4.0.4):
     - React-Core
@@ -371,6 +371,8 @@ PODS:
     - React-RCTImage
     - TOCropViewController
   - RNLocalize (2.1.1):
+    - React-Core
+  - RNPermissions (3.0.5):
     - React-Core
   - RNReanimated (2.2.0):
     - DoubleConversion
@@ -492,6 +494,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNLocalize (from `../node_modules/react-native-localize`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNRefresh (from `../node_modules/react-native-refresh`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -614,6 +617,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-crop-picker"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNRefresh:
@@ -658,7 +663,7 @@ SPEC CHECKSUMS:
   React-jsi: 67747b9722f6dab2ffe15b011bcf6b3f2c3f1427
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
-  react-native-camera: b8cc03e2feec0c04403d0998e37cf519d8fd4c6f
+  react-native-camera: 85210eb59b028e9430d29fa33b0252c56113beff
   react-native-cameraroll: 88f4e62d9ecd0e1f253abe4f685474f2ea14bfa2
   react-native-orientation: f1caf84d65f1a4fd4511a18f2b924e634ad7a628
   react-native-pager-view: 2864530d861ab2970beb2cd0b4cf2292cd30cd84
@@ -688,6 +693,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNImageCropPicker: 35a3ceb837446fa11547704709bb22b5fac6d584
   RNLocalize: 82a569022724d35461e2dc5b5d015a13c3ca995b
+  RNPermissions: 7043bacbf928eae25808275cfe73799b8f618911
   RNReanimated: 9c13c86454bfd54dab7505c1a054470bfecd2563
   RNRefresh: 680f2235f25e2412012d91e702f693242445d849
   RNScreens: 21b73c94c9117e1110a79ee0ee80c93ccefed8ce
@@ -698,6 +704,6 @@ SPEC CHECKSUMS:
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b47dc363925011ec71bf3401b197f7661ff678fe
+PODFILE CHECKSUM: a23d00ea9a11b11a0260378bb6c621acd65621af
 
 COCOAPODS: 1.10.1

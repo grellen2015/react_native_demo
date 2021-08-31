@@ -5,6 +5,7 @@ import {
     View,
 } from '../component/Themed';
 import {Button} from 'react-native';
+import reload from '../component/reload';
  
 const ContactScreen = ({navigation})=> {
   return (
@@ -13,6 +14,17 @@ const ContactScreen = ({navigation})=> {
           <Button title={"回到登录页"} onPress={()=>{
               navigation.navigate('LoginScreen');
           }} />
+        <Button title={"扫描页"} onPress={()=>{
+              navigation.navigate('scanScreen');
+            // reload.reloadModule();
+          }} />
+  <Button title={"reload"} onPress={()=>{
+            //   navigation.navigate('scanScreen');
+            reload.reloadModule((msg) => {
+                // alert(msg);
+              });
+          }} />
+
  
           <Button title={"详情页面传参测试"} onPress={()=>{
               navigation.navigate('DetailScreen',{

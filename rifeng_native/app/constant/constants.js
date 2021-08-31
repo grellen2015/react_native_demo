@@ -8,10 +8,11 @@
  */
 import {Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-
+import RNFS from 'react-native-fs';
 export default {
   downUrl: 'http://192.168.8.142',
   serverUrl: 'http://192.168.8.142:6060',
+  documentPath: (Platform.OS === 'ios' ? RNFS.DocumentDirectoryPath : RNFS.ExternalDirectoryPath),
   pageSize: 10,
   deviceType: Platform.OS.toUpperCase(),
   deviceInfo: {
