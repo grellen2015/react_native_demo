@@ -12,11 +12,13 @@ target 'rifeng' do
     :hermes_enabled => false
   )
 
-#  pod 'RNDynamicBundle', :path => '../node_modules/react-native-dynamic-bundle'
+  
 
 
 
 
+
+  pod 'react-native-restart', :path => '../node_modules/react-native-restart'
 
   target 'rifengTests' do
     inherit! :complete
@@ -32,6 +34,13 @@ target 'rifeng' do
   post_install do |installer|
     react_native_post_install(installer)
   end
-  
+  pod 'RNDynamicBundle', :path => '../node_modules/react-native-dynamic-bundle/ios'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera/Permission-Camera.podspec"
+  
+  pod 'Permission-Microphone', :path => "../node_modules/react-native-permissions/ios/Microphone/Permission-Microphone.podspec"
+  pod 'Permission-PhotoLibrary', :path => "../node_modules/react-native-permissions/ios/PhotoLibrary/Permission-PhotoLibrary.podspec"
+  
+  
 end

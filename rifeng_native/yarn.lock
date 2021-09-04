@@ -5710,6 +5710,11 @@ react-native-refresh@^2.0.17:
   resolved "https://registry.yarnpkg.com/react-native-refresh/-/react-native-refresh-2.0.17.tgz#b08d742cf26f805700f03ec852f5b214c3d2ab8f"
   integrity sha512-D2YBZ67cpxLRKoZfEslCMWR8Dc9iI4Eui4Fth0Q4MBZeQnftd48Kx0cIBNhLFI00TkLc/PQwAuUJJYuPwWLZiA==
 
+react-native-restart@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.22.tgz#81fcb7f31e35951d85410c68b9556acf3ab88705"
+  integrity sha512-XwCqAMAKsO8yCM3xACPFKvkDQZe41lcavOuO0gUEu803IuTLtciualCq/qs83ryRDCDh1jkXYRqFjsGjLMCN3Q==
+
 react-native-root-siblings@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-4.1.1.tgz#b7742db7634a87f507eb99a5fd699c4f10c46ab0"

@@ -6,6 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "iosBundle": "react-native bundle --entry-file index.js --bundle-output ./out/ios/index.bundle --platform ios --assets-dest ./out/ios --dev false",
+    "androidBundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -48,6 +50,7 @@
     "react-native-qrcode-scanner": "^1.5.4",
     "react-native-reanimated": "^2.2.0",
     "react-native-refresh": "^2.0.17",
+    "react-native-restart": "^0.0.22",
     "react-native-root-toast": "3.2.1",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",

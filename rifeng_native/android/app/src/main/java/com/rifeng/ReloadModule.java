@@ -5,10 +5,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+
+import org.mauritsd.reactnativedynamicbundle.RNDynamicBundleModule;
 
 public class ReloadModule extends ReactContextBaseJavaModule {
 
@@ -29,6 +33,8 @@ public class ReloadModule extends ReactContextBaseJavaModule {
     public void reloadModule(
                               Callback successCallback) {
 
+
+        MainActivity.mainActivity.reloadBundle();
         successCallback.invoke("call success");
 
         Toast.makeText(getReactApplicationContext(), "call reloadModule",Toast.LENGTH_LONG).show();

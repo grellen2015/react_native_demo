@@ -150,7 +150,7 @@ function MineNavigator() {
         name="mine"
         component={MineScreen}
         options={{
-          headerTitle: '我是设置标题',
+          headerTitle: '我是标题',
           headerLeft: null,
           headerTitleAlign: 'center',
         }}
