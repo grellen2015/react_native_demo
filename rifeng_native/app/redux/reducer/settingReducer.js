@@ -13,7 +13,7 @@ import { handleActions } from "redux-actions";
 // 初始化数据
 const initialState = {
   firstInstall: true,
-  initialPage: "SystemIntroduction",
+  initialPage: "LoginScreen",
   profileInfo: {
     theme: "#00868B",
   },

@@ -14,8 +14,10 @@ import Swiper from 'react-native-swiper';
 
 class MineScreen extends Component{
 
-    constructor(){
-        super();
+
+  constructor(props){
+    super(props)
+        
         this.state = {
             days:[{
                 key:0,
@@ -95,6 +97,8 @@ class MineScreen extends Component{
     }
 
     didClickItem(index){
+
+      this.props.navigation.navigate("showWebPage");
 
     }
     render(){

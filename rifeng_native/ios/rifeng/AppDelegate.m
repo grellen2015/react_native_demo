@@ -36,14 +36,16 @@ static void InitializeFlipper(UIApplication *application) {
   
   self.launchOptions = launchOptions;
 
-//  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-//  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-//                                                   moduleName:@"rifeng"
-//                                            initialProperties:nil];
-  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"rifeng"
+                                            initialProperties:nil];
 
-  [RNDynamicBundle setDefaultBundleURL:jsCodeLocation];
-  RCTRootView *rootView = [self getRootViewForBundleURL:[RNDynamicBundle resolveBundleURL]];
+  //for release
+//  NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+//
+//  [RNDynamicBundle setDefaultBundleURL:jsCodeLocation];
+//  RCTRootView *rootView = [self getRootViewForBundleURL:[RNDynamicBundle resolveBundleURL]];
 
 
   if (@available(iOS 13.0, *)) {

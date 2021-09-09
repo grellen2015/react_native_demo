@@ -1,22 +1,35 @@
-import * as React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, {useEffect, useState} from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import ContactScreen from './Contacts';
 import HomeScreen from './HomePage';
 import MessageScreen from './Message';
 import MineScreen from './Mine';
 import AppList from './AppList';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 import px2dp from '../util/DisplayUtil';
-import { Icon } from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 import AnimatedIcon from '../component/AnimatedIcon';
+import {useSelector, useDispatch} from 'react-redux';
+import {INITIAL_PAGE} from '../redux/action/settingActionTypes'
+export default function Navigation({colorScheme}) {
 
-export default function Navigation({ colorScheme }) {
+  const dispatch = useDispatch();
+  /**
+   * Save user info and init route page.
+   */
+  useEffect(() => {
+    dispatch({
+      type: INITIAL_PAGE,
+      initialPage: 'TabNav',
+    });
+  }, []);
+
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
           if (route.name === 'index') {
             let icon;
             icon = focused ? (
@@ -55,25 +68,25 @@ export default function Navigation({ colorScheme }) {
       <Tab.Screen
         name="index"
         component={HomeScreen}
-        options={{ title: '首页', headerMode: 'none' }}
+        options={{title: '首页', headerMode: 'none'}}
       />
       <Tab.Screen
         name="contact"
         component={ContactScreen}
-        options={{ title: 'Contact' }}
+        options={{title: 'Contact'}}
       />
       <Tab.Screen
         name="message"
         component={AppListNavigator}
-        options={{ title: '应用' }}
+        options={{title: '应用'}}
       />
 
       <Tab.Screen
         name="mine"
         component={MineNavigator}
-        options={{ title: '设置' }}
+        options={{title: '设置'}}
       />
-    </Tab.Navigator >
+    </Tab.Navigator>
   );
 }
 const Tab = createBottomTabNavigator();

@@ -14,11 +14,15 @@ import { AppState } from "react-native";
 import configureStore from "./app/redux/store/store";
 import ShowH5Screen from './app/pages/showH5Page'
 import ScanScreen from './app/pages/ScanScreen';
+import { useSelector } from "react-redux";
+import Navigation from './app/pages/Navigation'
 // 引入 redux 及 redux-persist 配置后的变量供使用
 const { store, persist } = configureStore();
 
 function App() {
 
+    // Dynamic initial page
+   
     useEffect(() => {
         // 监听app状态：后台挂起，杀死或者活动
         AppState.addEventListener("change", _handleAppStateChange);
@@ -32,50 +36,14 @@ function App() {
           console.log("app杀死");
         }
       }
+  
 
     return (
          // 外层需 Provider 包裹， PersistGate 中的 loading 需为一个组件，否则在启动页后会有短暂黑屏
     <Provider store={store}>
          <PersistGate loading={null} persistor={persist}>
-        <NavigationContainer>
-        <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen
-            name="LoginScreen"
-            component={LoginScreen}
-            options={{title: '登录', headerShown: false}}
-        />
-        <Stack.Screen
-            name="TabNav"
-            component={TabNav}
-            options={{title: '首页', headerShown: false}}
-        />
-
-        <Stack.Screen
-            name="DetailScreen"
-            component={DetailScreen}
-            options={({route, navigation}) => ({
-                title: route.params.screenName,
-            })}
-        />
-
-        <Stack.Screen
-            name="showH5Page"
-            component={ShowH5Screen}
-            options={({route, navigation}) => ({
-                title: "h5Page",
-            })}
-        />
-
-      <Stack.Screen
-            name="scanScreen"
-            component={ScanScreen}
-            options={({route, navigation}) => ({
-                title: "scan",
-            })}
-        />  
-    </Stack.Navigator>
-    </NavigationContainer>
-    </PersistGate>
+            <Navigation />
+         </PersistGate>
     </Provider>
     );
 }
